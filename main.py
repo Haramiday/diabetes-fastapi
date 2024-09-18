@@ -14,6 +14,8 @@ file_name = cwd+"/model_d.pkl"
 
 app = FastAPI()
 
+origins = ["*"]
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
