@@ -6,14 +6,6 @@ import os
 import warnings
 warnings.filterwarnings("ignore")
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
 # Load environment variables from .env file
 import pickle
 cwd = os.getcwd()
@@ -22,6 +14,13 @@ file_name = cwd+"/model_d.pkl"
 
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/")
 def read_root():
