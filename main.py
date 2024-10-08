@@ -41,12 +41,12 @@ async def get_prediction(request: Request):
     #print(category["gender"].index(message["gender"]))
     data = [[category["gender"].index(message["gender"]), int(message["age"]), 
               category["hypertension"].index(message["hypertension"]), category["heart_disease"].index(message["heart_disease"]),
-              category["smoking_history"].index(message["smoking_history"]),int(message["bmi"]),float(message["HbA1c_level"]),
+              category["smoking_history"].index(message["smoking_history"]),float(message["bmi"]),float(message["HbA1c_level"]),
               int(message["blood_glucose_level"])]]
     prediction = model_loaded.predict(data)[0]
     if float(message["HbA1c_level"])>=5.7:
         result = {"response":"YES"}
-    elif (message["hypertension"]=='Yes' or message["heart_disease"]=='Yes') and (message["smoking_history"]=='current' or message["smoking_history"]=='former') and int(message["blood_glucose_level"])>= 125 and int(message["bmi"])>= 25 and float(message["HbA1c_level"])>=5.7:
+    elif (message["hypertension"]=='Yes' or message["heart_disease"]=='Yes') and (message["smoking_history"]=='current' or message["smoking_history"]=='former') and int(message["blood_glucose_level"])>= 125 and float(message["bmi"])>= 25 and float(message["HbA1c_level"])>=5.7:
         result = {"response":"YES"}
     elif message["hypertension"]=='Yes' and message["heart_disease"]=='Yes' and (message["smoking_history"]=='current' or message["smoking_history"]=='former'):
         result = {"response":"YES"}
